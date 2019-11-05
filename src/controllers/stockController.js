@@ -4,8 +4,10 @@
 // update: update do controller
 // destroy: destruir controller 
 
+require("dotenv").config();
+
 const Stocks = require('stocks.js');
-const stocks = new Stocks('MN96PTATN5F5WDU3');
+const stocks = new Stocks(process.env.STOCK_KEY_API);
 
 const Stock = require('../models/Stock');
 const StockGroup = require('../models/StockGroup');
