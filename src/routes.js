@@ -22,5 +22,9 @@ routes.put('/profile/update', profileController.update);
 routes.post('/sell', sellController.update);
 routes.get('/sell', sellController.index);
 
+routes.get('/teste/senha12345', (req, res) => {
+    res.send({ ok: true });
+})
+
 
 module.exports = routes;
