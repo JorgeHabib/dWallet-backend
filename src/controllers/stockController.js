@@ -24,8 +24,6 @@ module.exports = {
     },
 
     async store(req, res) {
-        return res.send({ ok: true })
-
         const { name, price, amount} = req.body;
 
         const { user_id } = req.headers;
