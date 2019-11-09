@@ -110,7 +110,7 @@ module.exports = {
                 }
             }
             
-            user.save();
+            await user.save();
     
             console.log('[3] Saving Changes...');
             console.log('[4] Saving User Changes...');
