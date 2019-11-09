@@ -9,7 +9,7 @@ const stocks = new stockAPI(process.env.STOCK_KEY_API);
 
 module.exports = {
     async show(req, res) {
-        const { user_id } = req.headers;
+        const user_id = req.userId;
 
         const Stock_Group = await StockGroup.find({ user: user_id });
 
@@ -32,18 +32,18 @@ module.exports = {
     },
 
     async update(req, res) {
-        const { user_id } = req.headers;
+        const user_id = req.userId;
         const stockGroups = await StockGroup.find({ user: user_id });
         
         const user = await User.findOne({ _id: user_id });
 
         if (!user) {
             console.log('Could not find user: ' + user_id);
-            res.send({ ok: false})
+            return res.send({ ok: false })
         } else {
             let stockNames = user.updateQueue;
 
-            if (stockNames.length >= 25){
+            if (stockNames.length >= 30){
                 stockNames = [];
             }
     
@@ -116,7 +116,7 @@ module.exports = {
             console.log('[4] Saving User Changes...');
             console.log('[5] Done Updating Stock Prices');
             
-            res.send(stockGroups);
+            return res.send(stockGroups);
         }
     }
 }

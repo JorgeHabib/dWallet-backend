@@ -6,7 +6,7 @@ const Stock = new mongoose.Schema({
     price: Number,
     date: {
         type: String,
-        default: Date.now()
+        default: Date.now
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,

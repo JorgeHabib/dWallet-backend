@@ -7,7 +7,6 @@
 require("dotenv").config();
 
 const Stocks = require('stocks.js');
-const stocks = new Stocks(process.env.STOCK_KEY_API);
 
 const Stock = require('../models/Stock');
 const StockGroup = require('../models/StockGroup');
@@ -16,7 +15,7 @@ const User = require('../models/User');
 module.exports = {
     async index(req, res) {
         const { stock_name } = req.query;
-        const { user_id } = req.headers;
+        const user_id = req.userId;
 
         const stocks = await Stock.find({ name: stock_name, user: user_id });
 
@@ -26,7 +25,7 @@ module.exports = {
     async store(req, res) {
         const { name, price, amount} = req.body;
 
-        const { user_id } = req.headers;
+        const user_id = req.userId;
 
         const user = await User.findById(user_id);
 

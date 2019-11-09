@@ -5,9 +5,20 @@ const StockController = require('./controllers/stockController');
 const profileController = require('./controllers/profileController');
 const sellController = require('./controllers/sellController');
 
+const authUserMiddleware = require('./middlewares/auth');
+
 const routes = express.Router();
 
-routes.post('/sessions', SessionController.store);
+routes.use('/profile/update', authUserMiddleware);
+routes.use('/stocks', authUserMiddleware);
+routes.use('/stocks/new', authUserMiddleware);
+routes.use('/profile/show', authUserMiddleware);
+routes.use('/profile/update', authUserMiddleware);
+routes.use('/sell', authUserMiddleware);
+routes.use('/teste/senha12345', authUserMiddleware);
+
+routes.post('/sessions/register', SessionController.store);
+routes.post('/sessions/authenticate', SessionController.show);
 routes.get('/sessions', SessionController.index);
 routes.delete('/session/delete', SessionController.destroy);
 
@@ -23,7 +34,7 @@ routes.post('/sell', sellController.update);
 routes.get('/sell', sellController.index);
 
 routes.get('/teste/senha12345', (req, res) => {
-    res.send({ ok: true });
+    res.send({ ok: true , user: req.userId});
 })
 
 

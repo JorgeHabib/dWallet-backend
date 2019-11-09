@@ -11,7 +11,7 @@ const profileController = require('./profileController');
 module.exports = {
     async update(req, res) {
         const { name, amount, price } = req.body;
-        const { user_id } = req.headers;
+        const user_id = req.userId;
 
         const stockGroup = await StockGroup.findOne({ name , user: user_id });
 
@@ -31,14 +31,6 @@ module.exports = {
             //     return res.json({ error: "tock with bigger priceS than compatible" });
             // }
 
-            if (stockGroup.amount === amount) {
-                const deletedStock = await StockGroup.findOne({ name, user: user_id });
-
-                await StockGroup.deleteOne({ name, user: user_id });
-
-                return res.json(deletedStock);
-            }
-
             stockGroup.amount -= amount;
             stockGroup.price -= price*amount;
 
@@ -53,7 +45,7 @@ module.exports = {
     },
 
     async index (req, res) {
-        const { user_id } = req.headers;
+        const user_id = req.userId;
         const { stock_name } = req.query;
 
         const stocks = await SellingStock.find({ user: user_id, name: stock_name });
