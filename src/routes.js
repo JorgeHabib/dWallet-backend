@@ -21,6 +21,8 @@ routes.post('/sessions/register', SessionController.store);
 routes.post('/sessions/authenticate', SessionController.show);
 routes.get('/sessions', SessionController.index);
 routes.delete('/session/delete', SessionController.destroy);
+routes.post('/sessions/forgotpassword', SessionController.update);
+routes.post('/sessions/resetpassword', SessionController.resetpassword);
 
 routes.get('/stocks', StockController.index);
 routes.post('/stocks/new', StockController.store);

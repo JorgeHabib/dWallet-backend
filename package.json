@@ -20,7 +20,9 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.5",
-    "pm2": "^4.1.2",
+    "nodemailer": "^6.3.1",
+    "nodemailer-express-handlebars": "^3.1.0",
+    "path": "^0.12.7",
     "stocks.js": "0.0.17"
   }
 }
