@@ -30,7 +30,7 @@ module.exports = {
         const user = await User.findById(user_id);
 
         if (!user) {
-            return res.status(400).json({ error: 'User does not exists...' });
+            return res.status(200).json({ error: 'User does not exists...' });
         }
 
         const minMarketValue = price;

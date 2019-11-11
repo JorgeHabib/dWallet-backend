@@ -26,7 +26,7 @@ module.exports = {
             let user = await User.findOne({ email });
 
             if (user) {
-                return res.status(400).send({ error: 'Email already in use' });
+                return res.status(200).send({ error: 'Email already in use' });
             }else{
                 const hash = await bcrypt.hash(req.body.password, 10);
 
@@ -58,11 +58,11 @@ module.exports = {
         const user = await User.findOne({ email }).select('+password');
 
         if (!user) {
-            return res.status(400).send({ error: 'User not found' });
+            return res.status(200).send({ error: 'User not found' });
         }
 
         if (!await bcrypt.compare(password, user.password)){
-            return res.status(400).send({ error: 'Invalid password' })
+            return res.status(200).send({ error: 'Invalid password' })
         }
 
         user.password = undefined;
