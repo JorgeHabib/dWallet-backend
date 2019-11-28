@@ -6,8 +6,6 @@
 
 require("dotenv").config();
 
-const Stocks = require('stocks.js');
-
 const Stock = require('../models/Stock');
 const StockGroup = require('../models/StockGroup');
 const User = require('../models/User');
@@ -72,7 +70,6 @@ module.exports = {
                 console.log('User deleted');
             }
         })
-
 
         return res.send({ ok: true });
     }

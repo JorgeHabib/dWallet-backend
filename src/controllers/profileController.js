@@ -99,7 +99,10 @@ module.exports = {
                         stockMoment.marketValue = value;
                         stockMoment.myMoney = value * stockMoment.amount;
                         stockMoment.profit = stockMoment.myMoney - stockMoment.price;
-    
+                        stockMoment.avaragePrice = stockMoment.price/stockMoment.amount;
+                        console.log(stockMoment.avaragePrice);
+                        console.log(stockMoment.price);
+
                         await stockMoment.save();    
                     }else{
                         console.log('Invaling call to API...');

@@ -32,7 +32,7 @@ module.exports = {
             // }
 
             stockGroup.amount -= amount;
-            stockGroup.price -= price*amount;
+            //stockGroup.price -= price*amount;
 
             await stockGroup.save();
 
